@@ -1,38 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SLACK POLL BOT
 
-## Getting Started
+### PREVIEW OF BOT IN ACTION
 
-First, run the development server:
+![bot](public/bot.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+---
+
+##
+
+This project contains three serverless functions / API routes built with Next.js and Slack's web API.
+
+## Routes
+
+**/api/interaction**
+
+This route sends a Slack message containing a poll with two options: "Home" and "Office". Each option has a button to vote.
+
+When a user clicks a button, an interaction event is triggered. The interaction event is handled by Slack and sent to the /api/interaction route. This route logs the vote and sends a message thanking the user for voting.
+
+**/api/status**
+
+This route sends a Slack message containing a poll with two options: "Home" and "Office". Each option has a button to vote.
+
+**/api/manualTrigger**
+
+This route can be used to manually trigger the sending of the poll message.
+
+When this route is called, it sends a Slack message containing a poll with two options: "Home" and "Office". Each option has a button to vote.
+
+## TOKEN
+
+To use these functions, you need to set up a Slack bot and obtain a Slack API token. You also need to create a .env file in the root directory of your project and add your Slack API token as follows:
+
+```env
+SLACK_API_TOKEN=Bot User OAuth Token
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The token is found OAuth & Permissions and scroll to ↓
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+> OAuth Tokens for Your Workspace
+> These tokens were automatically generated when you installed the app to your team. You can use these to authenticate your app. Learn more.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+> Bot User OAuth Token
+> xoxb-akdsfkllas-adflkasda-asndlkasn
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### How to Use
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Clone the repository: git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+- Install dependencies: npm install
+- Create a .env file and add your SLACK_API_TOKEN:
+- SLACK_API_TOKEN=your-token-here
+- Run the project: npm run dev
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+To run the functions locally, you can use the following command:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```shell
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This command starts a local server that listens on http://localhost:3000
 
-## Deploy on Vercel
+You can test the functions by making HTTP requests to the following endpoints:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+/api/status: sends a poll message to a specific Slack channel asking whether users are working from home or the office.
+/api/manualTrigger: manually triggers the handler function to send the same poll message.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can also deploy these functions to a serverless platform such as Vercel or AWS Lambda.
+
+Note that these functions are designed to work with a specific Slack channel and may need to be modified if you want to use them with a different channel or Slack workspace.
