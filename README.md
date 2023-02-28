@@ -59,7 +59,7 @@ The token is found OAuth & Permissions and scroll to ↓
 > Bot User OAuth Token
 > xoxb-akdsfkllas-adflkasda-asndlkasn
 
-### How to Use
+## How to get started
 
 - Clone the repository: git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 - Install dependencies: npm install
