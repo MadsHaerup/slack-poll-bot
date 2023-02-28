@@ -22,11 +22,26 @@ When a user clicks a button, an interaction event is triggered. The interaction 
 
 This route sends a Slack message containing a poll with two options: "Home" and "Office". Each option has a button to vote.
 
+This route is only invoked with a vercel cron job at 5am UTC time.
+
+```json
+{
+	"crons": [
+		{
+			"path": "/api/status",
+			"schedule": "00 05 * * 1-5"
+		}
+	]
+}
+```
+
 **/api/manualTrigger**
 
 This route can be used to manually trigger the sending of the poll message.
 
 When this route is called, it sends a Slack message containing a poll with two options: "Home" and "Office". Each option has a button to vote.
+
+In the slack Dashboard, the bot can be set up to be triggered manually with slash commands. For example add /poll to slash commands and it will manually launch the poll bot.
 
 ## TOKEN
 
