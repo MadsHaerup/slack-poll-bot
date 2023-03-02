@@ -5,6 +5,7 @@ import { WebClient } from '@slack/web-api';
 //A Map is a collection of key/value pairs, where each key is unique and can be used to access its corresponding value.
 //In this case, the Map object can be used to store information about which buttons have been clicked.
 const clickedButtons: Map<string, string> = new Map();
+const profileNames: Set<string> = new Set();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 	if (req.method === 'POST') {
@@ -22,6 +23,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 			const profile = await web.users.profile.get({
 				user,
 			});
+
+			const displayName = profile?.profile?.display_name;
 
 			// Get URL of user's profile image
 			const image_url = profile?.profile?.image_48;
@@ -56,6 +59,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				elements.forEach((element: any, index: number) => {
 					if (element.alt_text == profile?.profile?.display_name) {
 						elements.splice(index, 1); // remove this element from the array
+						if (displayName && profileNames.has(displayName)) {
+							elements.splice(index, 1); // remove this element from the array
+							profileNames.delete(displayName); // remove from the Set object
+						}
 					}
 				});
 			}
@@ -65,6 +72,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				elements.forEach((element: any, index: number) => {
 					if (element.alt_text == profile?.profile?.display_name) {
 						elements.splice(index, 1); // remove this element from the array
+						if (displayName && profileNames.has(displayName)) {
+							elements.splice(index, 1); // remove this element from the array
+							profileNames.delete(displayName); // remove from the Set object
+						}
 					}
 				});
 			}

@@ -4,9 +4,8 @@ import { WebClient, ChatPostMessageArguments } from '@slack/web-api';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const web = new WebClient(process.env.SLACK_API_TOKEN);
-
 		const pollMessage: ChatPostMessageArguments = {
-			channel: 'C04RDSFAFJ6',
+			channel: 'C0446VDTFFH',
 			text: 'Are you working from home or the office?',
 			blocks: [
 				{
@@ -81,7 +80,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				},
 			],
 		};
-
 		const result = await web.chat.postMessage(pollMessage);
 
 		console.log(`Poll message sent: ${result.ts}`);
@@ -89,6 +87,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		res.status(200).send('Poll message sent');
 	} catch (error) {
 		console.error(error);
+		console.log(JSON.stringify(error, null, 2));
 		res.status(500).send('Error sending poll message');
 	}
 }

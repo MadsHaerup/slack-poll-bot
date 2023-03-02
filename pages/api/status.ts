@@ -4,9 +4,8 @@ import { WebClient, ChatPostMessageArguments } from '@slack/web-api';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const web = new WebClient(process.env.SLACK_API_TOKEN);
-
 		const pollMessage: ChatPostMessageArguments = {
-			channel: 'C04RDSFAFJ6',
+			channel: 'C0446VDTFFH',
 			text: 'Are you working from home or the office?',
 			blocks: [
 				{
