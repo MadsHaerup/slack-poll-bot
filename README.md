@@ -16,7 +16,7 @@ This project contains three serverless functions / API routes built with Next.js
 
 This route sends a Slack message containing a poll with two options: "Home" and "Office". Each option has a button to vote.
 
-When a user clicks a button, an interaction event is triggered. The interaction event is handled by Slack and sent to the /api/interaction route. This route logs the vote and sends a message thanking the user for voting.
+When a user clicks a button, an interaction event is triggered. The interaction event is handled by Slack and sent to the /api/interaction route. This route logs the vote.
 
 **/api/status**
 
